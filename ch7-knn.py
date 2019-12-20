@@ -66,3 +66,12 @@ model.fit(trainX, trainY) # pass train data and labels
 
 '''Step 4: evaluate with test set'''
 print(classification_report(testY, model.predict(testX), target_names=le.classes_)) #le.classes_is the orignial label names
+
+'''
+Cons : 
+    > Strong assumption here that similar classes will be closer in n-dimensional space.
+    > There is no actual "learning" going on, ie, can't correct itself if it makes a mistake.
+    > classifying a pt means comparison with every other point, which is O(N), so bad for large datasets.
+    > Not good for higher dimension feature spaces like images, as distances are not intuitive
+Pros: simple, practically no training time. Worth the effort to keep it somple at times.
+'''
