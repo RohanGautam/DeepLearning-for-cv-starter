@@ -1,0 +1,4 @@
+.vscode
+pyimagesearch/__pycache__
+pyimagesearch/datasets/__pycache__
+pyimagesearch/preprocessing/__pycache__
