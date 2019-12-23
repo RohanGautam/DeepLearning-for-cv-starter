@@ -50,15 +50,15 @@ y = y.reshape((y.shape[0], 1))
 
 # Adding a column of 1's to the right of X (?)
 X = np.hstack([
-    X, 
-    np.ones((X.shape[0],1))
+    X,
+    np.ones((X.shape[0], 1))
 ])
 
 
 # partition, using 50% for triaining and 50% for testing
 # X,y from above are being used as data and labels respectively
 (trainX, testX, trainY, testY) = train_test_split(X, y,
-test_size=0.5, random_state=42)
+                                                  test_size=0.5, random_state=42)
 
 # initialize our weight matrix and list of losses
 print("[INFO] training...")
@@ -74,24 +74,24 @@ for epoch in np.arange(0, args["epochs"]):
     # ‘error‘, which is the difference between our predictions and
     # the true values
     error = preds - trainY
-    loss = np.sum(error ** 2) # square error
+    loss = np.sum(error ** 2)  # square error
     losses.append(loss)
 
     # the gradient descent update is the dot product between our
     # features and the error of the predictions
-    gradient = trainX.T.dot(error) # transpose then take dot product
+    gradient = trainX.T.dot(error)  # transpose then take dot product
     # in the update stage, all we need to do is "nudge" the weight
     # matrix in the negative direction of the gradient (hence the
     # term "gradient descent" by taking a small step towards a set
     # of "more optimal" parameters
-    W+= -args["alpha"] * gradient
+    W += -args["alpha"] * gradient
     # check to see if an update should be displayed
     if epoch == 0 or (epoch + 1) % 5 == 0:
         print("[INFO] epoch={}, loss={:.7f}".format(int(epoch + 1),
-        loss))
+                                                    loss))
 
 # evaluate our model
-print("[INFO] evaluating...")   
+print("[INFO] evaluating...")
 preds = predict(testX, W)
 print(classification_report(testY, preds))
 
