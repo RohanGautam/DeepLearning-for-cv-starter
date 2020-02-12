@@ -1,0 +1,1 @@
+"cells" in vscode are used from `ch10-keras-cifar10.py` onwards to execute a specific chunks of code without selecting, but just pressing `Ctrl+Enter` in that box.
