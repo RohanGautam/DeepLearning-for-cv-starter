@@ -14,7 +14,7 @@ import argparse
 # construct the argument parse and parse the arguments
 # ap = argparse.ArgumentParser()
 # ap.add_argument("-o", "--output", required=True,
-                help="path to the output loss/accuracy plot")
+                # help="path to the output loss/accuracy plot")
 # args = vars(ap.parse_args())
 output = "outputs/keras-cifar10.png"
 
