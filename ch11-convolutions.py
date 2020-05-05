@@ -66,7 +66,7 @@ def convolute(image, kernel):
     krH, krW = kernel.shape
     # Check if kernel is a square matrix
     assert krH == krW
-    padBy = krH//2  # or (krH-1)/2
+    padBy = (krH-1)//2  # or (krH-1)/2
     # pad by replicating current border
     image = cv2.copyMakeBorder(image, padBy, padBy, padBy, padBy,
                                cv2.BORDER_REPLICATE)
@@ -74,10 +74,10 @@ def convolute(image, kernel):
     for x in range(padBy, imW+padBy):
         for y in range(padBy, imH+padBy):
             pixel = (x, y)
-            branchLen = krH//2
+            branchLen = padBy
             # the values will never be negative as we have padded the image.
-            imageSlice = image[pixel[1]-branchLen: pixel[1] +
-                               branchLen+1, pixel[0]-branchLen: pixel[0]+branchLen+1]
+            imageSlice = image[y-branchLen: y +
+                               branchLen+1, x-branchLen: x+branchLen+1]
 
             output[y-padBy, x-padBy] = (imageSlice*kernel).sum()
 
@@ -104,6 +104,6 @@ emboss = np.array((
     [-2, -1, 0],
     [-1, 1, 1],
     [0, 1, 2]), dtype="int")
-convolute(image, emboss)
+convolute(image, blur)
 
 # %%
